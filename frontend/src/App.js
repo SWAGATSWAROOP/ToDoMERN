@@ -15,6 +15,14 @@ function App() {
             <Category />
             <Duedata />
           </div>
+          <div className="flex flex-row w-full border-b-2 justify-center space-x-4 border-black">
+            <div className="h-20 w-52 mt-8 mb-8 font-bold text-2xl text-white bg-gray-500 flex items-center justify-center">
+              <button>Add Task</button>
+            </div>
+            <div className="h-20 w-52 mt-8 mb-8 font-bold text-2xl text-white bg-red-500 flex items-center justify-center">
+              <button>Delete Task</button>
+            </div>
+          </div>
         </div>
       </div>
     </>

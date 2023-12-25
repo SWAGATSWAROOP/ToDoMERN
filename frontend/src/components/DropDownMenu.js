@@ -22,7 +22,7 @@ const CustomDropdown = () => {
 
   return (
     <>
-      <div onClick={handleDropdown}>
+      <div onClick={handleDropdown} className="mb-4">
         <h3 className="ml-4 mb-1">{dropdownValue}</h3>
         {dropdown && (
           <div className="absolute w-96 bg-white rounded shadow border-2 ml-4 border-purple-300">
