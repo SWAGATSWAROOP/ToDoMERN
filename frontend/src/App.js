@@ -11,7 +11,7 @@ function App() {
         <div className="flex flex-col w-3/4 h-3/4 bg-gray-100">
           <Heading />
           <Description />
-          <div className="flex flex-row w-full">
+          <div className="flex flex-row w-full border-b-2 border-black">
             <Category />
             <Duedata />
           </div>

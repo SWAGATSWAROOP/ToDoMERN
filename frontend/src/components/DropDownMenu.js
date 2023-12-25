@@ -23,9 +23,9 @@ const CustomDropdown = () => {
   return (
     <>
       <div onClick={handleDropdown}>
-        <h3 className="ml-4 mb-1 border-r-2 border-black">{dropdownValue}</h3>
+        <h3 className="ml-4 mb-1">{dropdownValue}</h3>
         {dropdown && (
-          <div className=" bg-white rounded shadow border-2 ml-4 border-purple-300">
+          <div className="absolute w-96 bg-white rounded shadow border-2 ml-4 border-purple-300">
             {data.map((datavalue) => (
               <div
                 key={datavalue}
