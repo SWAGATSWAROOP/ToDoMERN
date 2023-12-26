@@ -17,7 +17,7 @@ export const Tasks = () => {
       .finally(() => {
         console.log("Received Error or Request Fullfilled");
       });
-  });
+  }, []);
 
   return (
     <>
