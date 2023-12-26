@@ -1,18 +1,7 @@
-require("dotenv").config();
-const express = require("express");
+import Dotenv from "dotenv";
+Dotenv.config({ path: "./env" });
+import { DB_NAME } from "./constant.js";
+import mongoose from "mongoose";
+import connectionDb from "./db/index.js";
 
-const app = express();
-const router = express.Router();
-
-router.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-router.get("/api/data", (req, res) => {
-  const data = { message: "This is your API data!" };
-  res.json(data); // Sending JSON response with data
-});
-
-app.listen(process.env.PORT, () =>
-  console.log(`Server is running on port ${process.env.PORT}`)
-);
+connectionDb();

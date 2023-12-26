@@ -22,7 +22,9 @@ export const Tasks = () => {
   return (
     <>
       {data.map((object) => (
-        <input key={object.id} className="p-2" type="checkbox"></input>
+        <input key={object.id} className="p-2 border-t-2" type="checkbox">
+          {object}
+        </input>
       ))}
     </>
   );
