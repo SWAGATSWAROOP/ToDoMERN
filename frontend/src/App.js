@@ -4,6 +4,7 @@ import Heading from "./components/Heading";
 import Category from "./components/Category";
 import Duedata from "./components/DueDate";
 import { TaskButton } from "./components/TaskButton";
+import { Tasks } from "./components/Tasks";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           </div>
           <TaskButton />
         </div>
+        <Tasks />
       </div>
     </>
   );
