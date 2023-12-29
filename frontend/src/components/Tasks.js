@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 export const Tasks = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    axios
+  const getData = async () => {
+    await axios
       .get("api/data")
       .then((response) => {
         console.log(response);
@@ -17,6 +17,9 @@ export const Tasks = () => {
       .finally(() => {
         console.log("Received Error or Request Fullfilled");
       });
+  };
+  useEffect(() => {
+    getData();
   }, []);
 
   return (
