@@ -18,8 +18,8 @@ function App() {
             <Duedata />
           </div>
           <TaskButton />
+          <Tasks />
         </div>
-        <Tasks />
       </div>
     </>
   );
