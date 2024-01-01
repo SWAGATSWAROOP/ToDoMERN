@@ -1,5 +1,5 @@
 import axios from "axios";
-import calender from "../icons/calendar.png";
+import calender from "../assets/icons/calendar.png";
 import { useState, useEffect } from "react";
 
 export const Tasks = () => {

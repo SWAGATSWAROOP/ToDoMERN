@@ -13,4 +13,4 @@ const TaskButton = () => {
   );
 };
 
-export { TaskButton };
+export default TaskButton;

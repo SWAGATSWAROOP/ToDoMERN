@@ -21,24 +21,22 @@ const CustomDropdown = () => {
   };
 
   return (
-    <>
-      <div onClick={handleDropdown} className="mb-4">
-        <h3 className="ml-4 mb-1">{dropdownValue}</h3>
-        {dropdown && (
-          <div className="absolute w-96 bg-white rounded shadow border-2 ml-4 border-purple-300">
-            {data.map((datavalue) => (
-              <div
-                key={datavalue}
-                className="p-2 pl-4 hover:bg-purple-400 cursor-pointer"
-                onClick={() => handleValue(datavalue)}
-              >
-                {datavalue}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </>
+    <div onClick={handleDropdown} className="mb-4">
+      <h3 className="ml-4 mb-1">{dropdownValue}</h3>
+      {dropdown && (
+        <div className="absolute w-96 bg-white rounded shadow border-2 ml-4 border-purple-300">
+          {data.map((datavalue) => (
+            <div
+              key={datavalue}
+              className="p-2 pl-4 hover:bg-purple-400 cursor-pointer"
+              onClick={() => handleValue(datavalue)}
+            >
+              {datavalue}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 

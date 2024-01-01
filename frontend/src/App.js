@@ -2,8 +2,8 @@ import "./App.css";
 import Description from "./components/Description";
 import Heading from "./components/Heading";
 import Category from "./components/Category";
-import Duedata from "./components/DueDate";
-import { TaskButton } from "./components/TaskButton";
+import Duedate from "./components/DueDate";
+import TaskButton from "./components/TaskButton";
 import { Tasks } from "./components/Tasks";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
           <Description />
           <div className="flex flex-row w-full border-b-2 border-black">
             <Category />
-            <Duedata />
+            <Duedate />
           </div>
           <TaskButton />
           <Tasks />
