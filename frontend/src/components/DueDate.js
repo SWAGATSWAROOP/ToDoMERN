@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addDead } from "../Features/Todo/todoSlice";
 
 const Duedate = () => {
-  const [duedate, setdueDate] = useState("");
+  const duedate = useSelector((state) => state.currObject.deadline);
+  const dispatch = useDispatch();
 
   const changeD = (e) => {
-    setdueDate(e.target.value);
+    const v = e.target.value;
+    dispatch(addDead(v));
   };
 
   return (

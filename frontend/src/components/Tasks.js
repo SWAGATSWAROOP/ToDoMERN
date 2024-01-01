@@ -1,58 +1,37 @@
-import axios from "axios";
+import { addR, removeList } from "../Features/Todo/todoSlice";
 import calender from "../assets/icons/calendar.png";
-import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 export const Tasks = () => {
-  const [data, setData] = useState([
-    { id: 1, name: "Swagat", type: "work", deadline: "No deadline" },
-    { id: 2, name: "Aryan", type: "personal", deadline: "4 January" },
-  ]);
-
-  const getData = async () => {
-    await axios
-      .get("/api/data")
-      .then((response) => {
-        console.log(response);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log("Failed to load API", error);
-      })
-      .finally(() => {
-        console.log("Received Error or Request Fullfilled");
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  });
+  const data = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
 
   const changeBG = (s) => {
     if (typeof s !== "string") return "";
     let g = "";
     switch (s) {
-      case "work":
+      case "Work":
         g = "bg-violet-800";
         break;
 
-      case "personal":
+      case "Personal":
         g = "bg-green-500";
         break;
 
-      case "cleaning":
+      case "Cleaning":
         g = "bg-yellow-300";
         break;
 
-      case "school":
+      case "School":
         g = "bg-blue-500";
         break;
 
-      case "other":
+      case "Other":
         g = "bg-orange-400";
         break;
 
       default:
-        g = "";
+        g = "bg-red-400";
     }
     return g;
   };
@@ -60,6 +39,12 @@ export const Tasks = () => {
   const caseChange = (s) => {
     if (typeof s !== "string") return "";
     return s.toUpperCase();
+  };
+
+  const handleCheck = (event) => {
+    const { checked, value } = event.target;
+    if (checked) dispatch(addR(value));
+    else dispatch(removeList(value));
   };
 
   return (
@@ -71,6 +56,13 @@ export const Tasks = () => {
               key={object.id}
               className="p-2 border-t-2 border-black flex flex-row"
             >
+              <div className="mr-2">
+                <input
+                  type="checkbox"
+                  value={object.id}
+                  onChange={(e) => handleCheck(e)}
+                />
+              </div>
               <div className="w-3/4">
                 <h1>{object.name}</h1>
                 <div className="mt-2">

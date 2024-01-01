@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addName } from "../Features/Todo/todoSlice";
 
 const Description = () => {
-  const [text, setText] = useState("");
+  const dispatch = useDispatch();
+  const text = useSelector((state) => state.currObject.name);
 
   const changeHandler = (event) => {
-    setText(event.target.value);
+    const ntext = event.target.value;
+    dispatch(addName(ntext));
   };
 
   const changeBackgroundColour = () => {
@@ -24,7 +27,7 @@ const Description = () => {
             className="w-full bg-inherit resize-none focus:outline-none"
             placeholder="What do you want?"
             value={text}
-            onChange={changeHandler}
+            onChange={(e) => changeHandler(e)}
           />
         </div>
       </div>

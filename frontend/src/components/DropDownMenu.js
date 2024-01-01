@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addCat } from "../Features/Todo/todoSlice";
 
 const CustomDropdown = () => {
+  const dispatch = useDispatch();
   const data = [
     "Choose Category",
     "Personal",
@@ -10,14 +13,14 @@ const CustomDropdown = () => {
     "Other",
   ];
   const [dropdown, setDropdown] = useState(false);
-  const [dropdownValue, setDropdownvalue] = useState("Choose Category");
+  const dropdownValue = useSelector((state) => state.currObject.type);
 
   const handleDropdown = () => {
     setDropdown(!dropdown);
   };
 
   const handleValue = (datavalue) => {
-    setDropdownvalue(datavalue);
+    dispatch(addCat(datavalue));
   };
 
   return (
