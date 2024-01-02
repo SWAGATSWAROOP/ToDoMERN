@@ -16,6 +16,8 @@ connection();
 //For cross origin authenthentication
 app.use(cors());
 
+//For Accepting JSON Data
+app.use(express.json());
 //For using url
 app.use(urlencoded());
 

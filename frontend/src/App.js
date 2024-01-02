@@ -5,8 +5,15 @@ import Category from "./components/Category";
 import Duedate from "./components/DueDate";
 import TaskButton from "./components/TaskButton";
 import { Tasks } from "./components/Tasks";
+import { useDispatch } from "react-redux";
+import { getData } from "./Features/Todo/todoSlice";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getData);
+  }, [dispatch]);
   return (
     <>
       <div className="flex justify-center items-center w-screen h-screen">

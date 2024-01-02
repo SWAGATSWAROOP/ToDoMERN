@@ -5,11 +5,11 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     try {
-        req.body.name = req.body.name.trim();
+        req.body.data.name = req.body.data.name.trim();
         await ToDo.create({
-            name: req.body.name,
-            type: req.body.type,
-            deadline: req.body.deadline,
+            name: req.body.data.name,
+            type: req.body.data.type,
+            deadline: req.body.data.deadline,
         });
         console.log('Succesfully Added Data');
         return res.status(200).json({ message: 'Succesfully Added Data' });

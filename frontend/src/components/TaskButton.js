@@ -1,28 +1,8 @@
-import axios from "axios";
 import { addTodo, removeTodo } from "../Features/Todo/todoSlice";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 const TaskButton = () => {
   const dispatch = useDispatch();
-
-  const getData = async () => {
-    await axios
-      .get("/api/data")
-      .then((response) => {
-        dispatch(addTodo(response.data));
-      })
-      .catch((error) => {
-        console.log("Failed to load API", error);
-      })
-      .finally(() => {
-        console.log("Received Error or Request Fullfilled");
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  });
 
   return (
     <>

@@ -1,55 +1,37 @@
-// import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import Axios from "axios";
 
-// const initialState = {
-//   todos: [{ id: 1, name: "Aryan", type: "work", deadline: "No deadline" }],
-//   removeL: [],
-//   currObject: { id: null, name: "", type: "", deadline: "" },
-// };
+const deleteData = async (data) => {
+  try {
+    await Axios.post("/delete", {
+      data: data,
+    });
+    console.log("Successfully Deleted Records");
+  } catch (err) {
+    console.log("Error in deleting the data");
+  }
+};
 
-// export const toDoSlice = createSlice({
-//   name: "todo",
-//   initialState,
-//   reducers: {
-//     addTodo: (state) => {
-//       state.currObject.id = nanoid();
-//       state.todos.push(state.currObject);
-//     },
-//     removeTodo: (state) => {
-//       state.todos = state.todos.filter(
-//         (todo) => !state.removeL.includes(todo.id)
-//       );
-//     },
-//     addR: (state, action) => {
-//       const todo = action.payload;
-//       state.removeL.push(todo);
-//     },
-//     removeList: (state, action) => {
-//       state.removeL = state.removeL.filter((todo) => todo != action.payload);
-//     },
-//     addDead: (state, action) => {
-//       state.currObject.deadline = action.payload;
-//     },
-//     addCat: (state, action) => {
-//       state.currObject.type = action.payload;
-//     },
-//     addName: (state, action) => {
-//       state.currObject.name = action.payload;
-//     },
-//   },
-// });
+const addData = async (data) => {
+  try {
+    await Axios.post("/add", {
+      data: data,
+    });
+    console.log("Added Data Successfully");
+  } catch (err) {
+    console.log("Error in handling data", err);
+  }
+};
 
-// export const {
-//   addTodo,
-//   removeTodo,
-//   addR,
-//   removeList,
-//   addDead,
-//   addCat,
-//   addName,
-// } = toDoSlice.actions;
-// export default toDoSlice.reducer;
-
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+export const getData = async (dispatch) => {
+  try {
+    const response = await Axios.get("/fetch");
+    console.log("Successfully Response Received");
+    dispatch(setTodo(response.data.data));
+  } catch (err) {
+    console.log("Error in receiving Response");
+  }
+};
 
 const initialState = {
   todos: [],
@@ -64,6 +46,7 @@ export const toDoSlice = createSlice({
     addTodo: (state) => {
       const newTodo = { ...state.currObject, id: nanoid() };
       state.todos.push(newTodo);
+      addData(newTodo);
       state.currObject = {
         id: null,
         name: "",
@@ -72,9 +55,12 @@ export const toDoSlice = createSlice({
       }; // Reset currObject after adding
     },
     removeTodo: (state) => {
+      const idtodel = state.removeL;
       state.todos = state.todos.filter(
         (todo) => !state.removeL.includes(todo.id)
       );
+      deleteData(idtodel);
+      state.removeL = [];
     },
     addR: (state, action) => {
       const todoId = action.payload;
@@ -98,6 +84,9 @@ export const toDoSlice = createSlice({
       const name = action.payload;
       state.currObject.name = name;
     },
+    setTodo: (state, action) => {
+      state.todos = action.payload;
+    },
   },
 });
 
@@ -109,6 +98,7 @@ export const {
   addDead,
   addCat,
   addName,
+  setTodo,
 } = toDoSlice.actions;
 
 export default toDoSlice.reducer;
