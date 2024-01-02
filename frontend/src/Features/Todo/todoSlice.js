@@ -4,7 +4,7 @@ import Axios from "axios";
 const deleteData = async (data) => {
   try {
     await Axios.post("/delete", {
-      data: data,
+      data: data, // Assuming 'data' is an array of IDs
     });
     console.log("Successfully Deleted Records");
   } catch (err) {
@@ -36,7 +36,7 @@ export const getData = async (dispatch) => {
 const initialState = {
   todos: [],
   removeL: [],
-  currObject: { id: null, name: "", type: "Choose Category", deadline: "" },
+  currObject: { _id: "", name: "", type: "Choose Category", deadline: "" },
 };
 
 export const toDoSlice = createSlice({
@@ -44,21 +44,25 @@ export const toDoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state) => {
-      const newTodo = { ...state.currObject, id: nanoid() };
-      state.todos.push(newTodo);
+      if (state.currObject.name === "") return;
+      const newTodo = { ...state.currObject };
+      if (newTodo.type === "Choose Category") newTodo.type = "";
+      if (newTodo.deadline === "") newTodo.deadline = "No Deadline";
       addData(newTodo);
+      state.todos.push(newTodo);
       state.currObject = {
-        id: null,
+        _id: null,
         name: "",
         type: "Choose Category",
         deadline: "",
       }; // Reset currObject after adding
     },
     removeTodo: (state) => {
-      const idtodel = state.removeL;
       state.todos = state.todos.filter(
-        (todo) => !state.removeL.includes(todo.id)
+        (todo) => !state.removeL.includes(todo._id)
       );
+      getData();
+      const idtodel = state.todos;
       deleteData(idtodel);
       state.removeL = [];
     },

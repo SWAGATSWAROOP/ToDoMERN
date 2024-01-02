@@ -31,7 +31,7 @@ export const Tasks = () => {
         break;
 
       default:
-        g = "bg-red-400";
+        g = "";
     }
     return g;
   };
@@ -53,13 +53,13 @@ export const Tasks = () => {
         {data.map((object) => (
           <>
             <div
-              key={object.id}
+              key={object._id}
               className="p-2 border-t-2 border-black flex flex-row"
             >
               <div className="mr-2">
                 <input
                   type="checkbox"
-                  value={object.id}
+                  value={object._id}
                   onChange={(e) => handleCheck(e)}
                 />
               </div>
