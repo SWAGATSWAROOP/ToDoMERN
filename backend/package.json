@@ -1,21 +1,28 @@
 {
-  "name": "todoapp",
+  "name": "server-todo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A MERN Stack application using Redux-Toolkit",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "nodemon -r dotenv/config --experimental-json-modules index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SWAGATSWAROOP/ToDoReact-Tailwind-Nodejs.git"
+  },
+  "keywords": [
+    "MERN",
+    "Stack"
+  ],
+  "author": "Swagat Swaroop Parida",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SWAGATSWAROOP/ToDoReact-Tailwind-Nodejs/issues"
+  },
+  "homepage": "https://github.com/SWAGATSWAROOP/ToDoReact-Tailwind-Nodejs#readme",
   "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "mongoose": "^8.0.3",
-    "nodemon": "^3.0.2",
-    "passport": "^0.7.0"
+    "mongoose": "^8.0.3"
   }
 }
