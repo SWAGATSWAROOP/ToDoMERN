@@ -61,7 +61,6 @@ export const toDoSlice = createSlice({
       state.todos = state.todos.filter(
         (todo) => !state.removeL.includes(todo._id)
       );
-      getData();
       const idtodel = state.todos;
       deleteData(idtodel);
       state.removeL = [];
