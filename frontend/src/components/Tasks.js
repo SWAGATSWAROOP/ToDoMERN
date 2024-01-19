@@ -1,10 +1,20 @@
+import { useEffect, useState } from "react";
 import { addR, removeList } from "../Features/Todo/todoSlice";
 import calender from "../assets/icons/calendar.png";
 import { useSelector, useDispatch } from "react-redux";
+import Axios from "axios";
 
 export const Tasks = () => {
-  const data = useSelector((state) => state.todos);
+  const d = useSelector((state) => state.todos);
   const dispatch = useDispatch();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function fetchdata() {
+      const res = await Axios.get("/fetch");
+      setData(res.data.data);
+    }
+    fetchdata();
+  }, [d]);
 
   const changeBG = (s) => {
     if (typeof s !== "string") return "";
@@ -43,8 +53,10 @@ export const Tasks = () => {
 
   const handleCheck = (event) => {
     const { checked, value } = event.target;
-    if (checked) dispatch(addR(value));
-    else dispatch(removeList(value));
+    if (checked) {
+      console.log(value);
+      dispatch(addR(value));
+    } else dispatch(removeList(value));
   };
 
   return (

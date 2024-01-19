@@ -25,16 +25,14 @@ const addData = async (data) => {
 
 export const getData = async (dispatch) => {
   try {
-    const response = await Axios.get("/fetch");
-    console.log("Successfully Response Received");
-    dispatch(setTodo(response.data.data));
+    dispatch(setTodo(1));
   } catch (err) {
     console.log("Error in receiving Response");
   }
 };
 
 const initialState = {
-  todos: [],
+  todos: Boolean,
   removeL: [],
   currObject: { _id: "", name: "", type: "Choose Category", deadline: "" },
 };
@@ -49,7 +47,7 @@ export const toDoSlice = createSlice({
       if (newTodo.type === "Choose Category") newTodo.type = "";
       if (newTodo.deadline === "") newTodo.deadline = "No Deadline";
       addData(newTodo);
-      state.todos.push(newTodo);
+      state.todos = !state.todos;
       state.currObject = {
         _id: null,
         name: "",
@@ -58,11 +56,8 @@ export const toDoSlice = createSlice({
       }; // Reset currObject after adding
     },
     removeTodo: (state) => {
-      state.todos = state.todos.filter(
-        (todo) => !state.removeL.includes(todo._id)
-      );
-      const idtodel = state.todos;
-      deleteData(idtodel);
+      deleteData(state.removeL);
+      state.todos = !state.todos;
       state.removeL = [];
     },
     addR: (state, action) => {

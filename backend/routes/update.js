@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 
         // Delete documents that were fetched
         await ToDo.deleteMany({
-            _id: { $nin: data.map((doc) => doc._id) },
+            _id: { $in: data.map((doc) => doc) },
         });
         console.log('Succesfully Deleted');
     } catch (err) {
